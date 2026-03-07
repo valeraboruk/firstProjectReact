@@ -1,6 +1,9 @@
+import ComponentUseState from "../components/ComponentUseState"
 import MyComponent from "../components/MyComponent"
 import SampleBlock from "../components/SampleBlock"
 import SampleButton from "../components/SampleButton"
+import SampleBlockUseState from "../components/SampleBlockUseState"
+import Counter from "../components/Counter"
 export default function Education() {
 
 
@@ -11,7 +14,9 @@ export default function Education() {
             <SampleBlock 
                 title={"Занятие 1"} 
             description={"Описание занятия"}/>
-            
+            <ComponentUseState/>
+            <SampleBlockUseState/>
+            <div className="gap-0"><Counter/></div>
         </div>
     )
 }

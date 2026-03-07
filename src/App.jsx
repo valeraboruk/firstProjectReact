@@ -9,12 +9,15 @@ import ProductCard from './components/ProductCard'
 import ProductList from './components/ProductList'
 import Main from './pages/Main'
 import Education from './pages/EducationPage'
+
 function App() {
 
   return (
     <div>
-      <Header/>
-      <ProductList/>
+      <Main/>
+      {/*<Education/>
+       <Header/>
+      <ProductList/> */}
     </div>
   )
 }
