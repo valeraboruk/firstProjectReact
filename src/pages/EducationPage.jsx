@@ -4,6 +4,7 @@ import SampleBlock from "../components/SampleBlock"
 import SampleButton from "../components/SampleButton"
 import SampleBlockUseState from "../components/SampleBlockUseState"
 import Counter from "../components/Counter"
+import MyList from "../components/MyList"
 export default function Education() {
 
 
@@ -17,6 +18,8 @@ export default function Education() {
             <ComponentUseState/>
             <SampleBlockUseState/>
             <div className="gap-0"><Counter/></div>
+            <MyList/>
+        
         </div>
     )
 }

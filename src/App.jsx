@@ -14,10 +14,9 @@ function App() {
 
   return (
     <div>
+      
       <Main/>
-      {/*<Education/>
-       <Header/>
-      <ProductList/> */}
+      
     </div>
   )
 }
