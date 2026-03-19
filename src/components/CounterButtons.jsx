@@ -11,6 +11,7 @@ export default function CounterButtons({count, setCount}) {
             <button onClick={() => setCount(count - 1)} className="border p-3 m-1">
                 -1
             </button>
+            
         </div>
     )
 }

@@ -5,6 +5,7 @@ function Main() {
     
     return (
         <>
+        
             <Header/>
             <h2>Главная страница</h2>
             <ShopActions/>
