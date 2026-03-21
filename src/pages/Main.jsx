@@ -1,4 +1,4 @@
-import ProductList from "../components/ProductList"
+import ProductList from "../components/blocks/ProductList"
 import Header from "../Header"
 import ShopActions from "../components/ShopActions"
 function Main() {
