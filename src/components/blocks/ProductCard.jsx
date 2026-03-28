@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import AddLike from '../addLike';
 
 export default function ProductCard({ image, name, discription, priceAfter, discountPercent }) {
     const [count, setCount] = useState(0);
-    
+    const [isLike, setIsLike] = useState(false); // Обычно по умолчанию false
+
     const priceBefore = discountPercent > 0 
         ? Math.round(priceAfter / (1 - discountPercent / 100)) 
         : null;
 
     return (
         <div className="group relative w-[320px] bg-white rounded-[32px] p-5 shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 font-sans">
-            
+                
             {/* Скидка */}
             {discountPercent > 0 && (
                 <div className="absolute top-6 left-6 z-10 bg-red-500 text-white text-[11px] font-black px-2.5 py-1 rounded-xl shadow-lg">
@@ -17,8 +19,13 @@ export default function ProductCard({ image, name, discription, priceAfter, disc
                 </div>
             )}
 
-            {/* Фото */}
-            <div className="w-full h-64 bg-[#F3F4F6] rounded-[24px] mb-6 flex items-center justify-center overflow-hidden">
+            {/* Контейнер для фото и лайка */}
+            <div className="relative w-full h-64 bg-[#F3F4F6] rounded-[24px] mb-6 flex items-center justify-center overflow-hidden">
+                {/* Кнопка Лайка (позиционирование) */}
+                <div className="absolute top-4 right-4 z-20">
+                    <AddLike isLike={isLike} setIsLike={setIsLike}/>
+                </div>
+
                 {image ? (
                     <img 
                         src={image} 
@@ -48,7 +55,7 @@ export default function ProductCard({ image, name, discription, priceAfter, disc
                         </span>
                     )}
                 </div>
-
+                
                 {/* Управление корзиной */}
                 <div className="h-[56px] w-full">
                     {count === 0 ? (
@@ -59,9 +66,7 @@ export default function ProductCard({ image, name, discription, priceAfter, disc
                             Добавить в корзину
                         </button>
                     ) : (
-                        /* СЕРЫЙ ФОН bg-gray-200 */
                         <div className="w-full h-full flex items-center justify-between bg-gray-200 rounded-2xl p-1.5 border border-gray-300/50 animate-in fade-in zoom-in duration-300">
-                            {/* Белые кнопки на сером фоне */}
                             <button 
                                 onClick={() => setCount(count - 1)}
                                 className="w-11 h-11 flex items-center justify-center rounded-xl bg-white text-gray-900 shadow-sm hover:bg-red-500 hover:text-white hover:scale-105 active:scale-90 transition-all text-2xl font-light"

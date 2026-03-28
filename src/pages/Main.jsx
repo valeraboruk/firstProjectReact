@@ -7,7 +7,6 @@ function Main() {
         <>
         
             <Header/>
-            <h2>Главная страница</h2>
             <ShopActions/>
             <ProductList/>
         </>

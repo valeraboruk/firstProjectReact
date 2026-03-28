@@ -5,8 +5,10 @@ import SampleButton from "../components/SampleButton"
 import SampleBlockUseState from "../components/SampleBlockUseState"
 import Counter from "../components/Counter"
 import MyList from "../components/MyList"
+import FirstConditional from "../components/EduComponents/FirstConditional"
+import { useState } from "react"
 export default function Education() {
-
+    const [isVisible, setIsVisible] = useState(true)
 
     return(
         <div className="flex flex-col gap-10">
@@ -19,7 +21,13 @@ export default function Education() {
             <SampleBlockUseState/>
             <div className="gap-0"><Counter/></div>
             <MyList/>
-        
+            <FirstConditional isVisible={isVisible} setIsVisible={setIsVisible}/>
+            <button 
+                className="border p-2 text-white" 
+                onClick={() => setIsVisible(!isVisible)}
+            >
+                Переключить
+            </button>
         </div>
     )
 }
