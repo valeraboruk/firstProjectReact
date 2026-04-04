@@ -7,7 +7,12 @@ import Counter from "../components/Counter"
 import MyList from "../components/MyList"
 import FirstConditional from "../components/EduComponents/FirstConditional"
 import { useState } from "react"
+import OnChangeComp from "../components/OnChangeComp"
+import { useEffect } from "react"
 export default function Education() {
+    useEffect
+    
+    
     const [isVisible, setIsVisible] = useState(true)
 
     return(
@@ -28,6 +33,8 @@ export default function Education() {
             >
                 Переключить
             </button>
+        <OnChangeComp/>
         </div>
-    )
+
+   )
 }

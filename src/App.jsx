@@ -14,8 +14,8 @@ function App() {
 
   return (
     <div>
-
       <Main/>
+      <Education/>
       
     </div>
   )
