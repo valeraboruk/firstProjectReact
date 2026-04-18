@@ -7,7 +7,6 @@ function Main() {
         <>
         
             <Header/>
-            <ShopActions/>
             <ProductList/>
         </>
     )

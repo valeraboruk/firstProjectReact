@@ -1,13 +1,33 @@
 import React, { useState } from 'react';
 import AddLike from '../addLike';
 
-export default function ProductCard({ image, name, discription, priceAfter, discountPercent }) {
-    const [count, setCount] = useState(0);
-    const [isLike, setIsLike] = useState(false); // Обычно по умолчанию false
+export default function ProductCard({ 
+    id,
+    image, 
+    name, 
+    discription, 
+    priceAfter, 
+    discountPercent,
+    cartCount = 0,
+    onCartChange 
+}) {
+    const [isLike, setIsLike] = useState(false);
 
     const priceBefore = discountPercent > 0 
         ? Math.round(priceAfter / (1 - discountPercent / 100)) 
         : null;
+
+    const handleAddToCart = () => {
+        onCartChange(id, 1);
+    };
+
+    const handleIncrement = () => {
+        onCartChange(id, cartCount + 1);
+    };
+
+    const handleDecrement = () => {
+        onCartChange(id, cartCount - 1);
+    };
 
     return (
         <div className="group relative w-[320px] bg-white rounded-[32px] p-5 shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 font-sans">
@@ -21,7 +41,6 @@ export default function ProductCard({ image, name, discription, priceAfter, disc
 
             {/* Контейнер для фото и лайка */}
             <div className="relative w-full h-64 bg-[#F3F4F6] rounded-[24px] mb-6 flex items-center justify-center overflow-hidden">
-                {/* Кнопка Лайка (позиционирование) */}
                 <div className="absolute top-4 right-4 z-20">
                     <AddLike isLike={isLike} setIsLike={setIsLike}/>
                 </div>
@@ -58,28 +77,28 @@ export default function ProductCard({ image, name, discription, priceAfter, disc
                 
                 {/* Управление корзиной */}
                 <div className="h-[56px] w-full">
-                    {count === 0 ? (
+                    {cartCount === 0 ? (
                         <button 
-                            onClick={() => setCount(1)}
+                            onClick={handleAddToCart}
                             className="w-full h-full bg-indigo-600 text-white text-sm font-bold rounded-2xl hover:bg-indigo-700 active:scale-[0.96] transition-all shadow-lg shadow-indigo-50"
                         >
                             Добавить в корзину
                         </button>
                     ) : (
-                        <div className="w-full h-full flex items-center justify-between bg-gray-200 rounded-2xl p-1.5 border border-gray-300/50 animate-in fade-in zoom-in duration-300">
+                        <div className="w-full h-full flex items-center justify-between bg-gray-200 rounded-2xl p-1.5 border border-gray-300/50">
                             <button 
-                                onClick={() => setCount(count - 1)}
+                                onClick={handleDecrement}
                                 className="w-11 h-11 flex items-center justify-center rounded-xl bg-white text-gray-900 shadow-sm hover:bg-red-500 hover:text-white hover:scale-105 active:scale-90 transition-all text-2xl font-light"
                             >
                                 −
                             </button>
                             
-                            <span className="text-base font-black tabular-nums text-gray-900 px-2">
-                                {count}
+                            <span className="text-base font-black text-gray-900 px-2">
+                                {cartCount}
                             </span>
                             
                             <button 
-                                onClick={() => setCount(count + 1)}
+                                onClick={handleIncrement}
                                 className="w-11 h-11 flex items-center justify-center rounded-xl bg-white text-gray-900 shadow-sm hover:bg-green-500 hover:text-white hover:scale-105 active:scale-90 transition-all text-2xl font-light"
                             >
                                 +
