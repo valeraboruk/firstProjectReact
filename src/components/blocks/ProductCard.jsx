@@ -71,7 +71,7 @@ export default function ProductCard({
                     {priceBefore && (
                         <span className="text-sm text-gray-300 line-through font-medium">
                             {priceBefore.toLocaleString()} ₽
-                        </span>
+                        </span> 
                     )}
                 </div>
                 
