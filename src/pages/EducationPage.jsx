@@ -9,6 +9,7 @@ import FirstConditional from "../components/EduComponents/FirstConditional"
 import { useState } from "react"
 import OnChangeComp from "../components/OnChangeComp"
 import { useEffect } from "react"
+import Users from "../components/Users"
 export default function Education() {
     useEffect
     
@@ -18,6 +19,7 @@ export default function Education() {
     return(
         <div className="flex flex-col gap-10">
             <h1>Обучающая страница</h1>
+            <Users/>
             <MyComponent />
             <SampleBlock 
                 title={"Занятие 1"} 
