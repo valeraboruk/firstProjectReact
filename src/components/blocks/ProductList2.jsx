@@ -1,9 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 import ShopActions from "../ShopActions";
-import CartModal from "../CartModal"; // Добавить импорт
 
-function ProductList() {
+function ProductList2() {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -49,8 +48,6 @@ function ProductList() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);
     const [isSortOpen, setIsSortOpen] = useState(false);
     
-    const [isCartOpen, setIsCartOpen] = useState(false);
-
     const filterTimerRef = useRef(null);
     const sortTimerRef = useRef(null);
 
@@ -202,8 +199,7 @@ function ProductList() {
             <ShopActions 
                 cartCount={totalCartCount} 
                 searchQuery={searchQuery}
-                onSearch={handleSearch}
-                onCartClick={() => setIsCartOpen(true)}
+                onSearch={handleSearch} 
             />
             
             <div className="flex items-center gap-3 mb-6">
@@ -281,31 +277,21 @@ function ProductList() {
                             className="absolute top-full left-0 mt-2 bg-white rounded-xl shadow-xl border border-gray-100 p-1.5 z-50 min-w-[180px] flex flex-col gap-1"
                             onMouseEnter={handleSortMouseEnter} onMouseLeave={handleSortMouseLeave}
                         >
-                            <button onClick={() => handleSortSelect("default")}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
-                                    ${sortType === "default" ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                По умолчанию
-                            </button>
-                            <button onClick={() => handleSortSelect("priceAsc")}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
-                                    ${sortType === "priceAsc" ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                Цена ↑
-                            </button>
-                            <button onClick={() => handleSortSelect("priceDesc")}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
-                                    ${sortType === "priceDesc" ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                Цена ↓
-                            </button>
-                            <button onClick={() => handleSortSelect("nameAsc")}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
-                                    ${sortType === "nameAsc" ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                Название А-Я
-                            </button>
-                            <button onClick={() => handleSortSelect("nameDesc")}
-                                className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
-                                    ${sortType === "nameDesc" ? 'bg-black text-white' : 'text-gray-700 hover:bg-gray-100'}`}>
-                                Название Я-А
-                            </button>
+                            {["default", "priceAsc", "priceDesc", "nameAsc", "nameDesc"].map(type => (
+                                <button key={type} onClick={() => handleSortSelect(type)}
+                                    className={`w-full text-left px-4 py-2 rounded-lg text-sm transition-colors
+                                        ${sortType === type 
+                                            ? 'bg-black text-white' 
+                                            : 'text-gray-700 hover:bg-gray-100'
+                                        }`}
+                                >
+                                    {type === "default" && "По умолчанию"}
+                                    {type === "priceAsc" && "Цена ↑"}
+                                    {type === "priceDesc" && "Цена ↓"}
+                                    {type === "nameAsc" && "Название А-Я"}
+                                    {type === "nameDesc" && "Название Я-А"}
+                                </button>
+                            ))}
                         </div>
                     )}
                 </div>
@@ -339,27 +325,14 @@ function ProductList() {
                     ))
                 ) : (
                     <div className="w-full py-16 text-center">
-                        <div className="text-6xl mb-4">🔍</div>
-                        <h3 className="text-xl font-semibold text-gray-700 mb-2">Ничего не найдено</h3>
-                        <p className="text-gray-500 mb-6">Попробуйте изменить параметры поиска или фильтры</p>
-                        <button onClick={handleResetAll}
-                            className="px-6 py-2 bg-black text-white rounded-lg hover:bg-gray-800 transition-colors">
-                            Сбросить все фильтры
-                        </button>
+                        <div className="text-6xl mb-4">📦</div>
+                        <h3 className="text-xl font-semibold text-gray-700 mb-2">Товаров пока нет</h3>
+                        <p className="text-gray-500">Добавьте товары в API</p>
                     </div>
                 )}
             </div>
-            
-            {/* Модальное окно корзины */}
-            <CartModal 
-                isOpen={isCartOpen}
-                onClose={() => setIsCartOpen(false)}
-                cartItems={cartItems}
-                products={products}
-                onUpdateCart={updateCartItem}
-            />
         </div>
     );
 }
 
-export default ProductList;
+export default ProductList2;
