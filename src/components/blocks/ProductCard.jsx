@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import AddLike from '../addLike';
+import { Link } from 'react-router-dom';
 
 export default function ProductCard({ 
     id,
@@ -30,7 +31,7 @@ export default function ProductCard({
     };
 
     return (
-        <div className="group relative w-[320px] bg-white rounded-[32px] p-5 shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 font-sans">
+        <Link to={"/prodcard/" + id}><div className="group relative w-[320px] bg-white rounded-[32px] p-5 shadow-sm border border-gray-100 hover:shadow-2xl transition-all duration-500 font-sans">
                 
             {/* Скидка */}
             {discountPercent > 0 && (
@@ -107,6 +108,6 @@ export default function ProductCard({
                     )}
                 </div>
             </div>
-        </div>
+        </div></Link>
     );
 }

@@ -1,6 +1,6 @@
 import SignIn from "./components/signIn"
 import { useState } from "react"
-
+import { Link } from "react-router-dom"
 
 function Header() {
     const [isSign, setIsSign] = useState(true)
@@ -14,7 +14,7 @@ function Header() {
                         <p>Интернет-магазин</p>
                         
                         
-                <SignIn className="flex justify-end " isSign={isSign} setIsSign={setIsSign} />
+                <Link to={"/login"}><SignIn className="flex justify-end " isSign={isSign} setIsSign={setIsSign} /></Link>
                 </header>
                 
 
