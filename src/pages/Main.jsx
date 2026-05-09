@@ -8,7 +8,7 @@ function Main() {
         <>
         
             <Header/>
-            <ProductList2/>
+            <ProductList/>
             {/* <ProductList/> */}
         </>
     )
