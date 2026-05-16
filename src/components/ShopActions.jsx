@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function ShopActions({ cartCount = 0, searchQuery = "", onSearch, onCartClick }) {
     const [isSticky, setIsSticky] = useState(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const handleScroll = () => setIsSticky(window.scrollY > 5);
@@ -20,6 +22,8 @@ function ShopActions({ cartCount = 0, searchQuery = "", onSearch, onCartClick })
                     className="w-full py-2 px-4 rounded-lg bg-white border border-gray-300 focus:ring-2 focus:ring-black outline-none text-sm text-gray-900 placeholder-gray-500"
                 />
             </div>
+
+            
 
             <button 
                 onClick={onCartClick}

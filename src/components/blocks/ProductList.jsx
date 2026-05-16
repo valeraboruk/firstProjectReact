@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import ProductCard from "./ProductCard";
 import ShopActions from "../ShopActions";
-import CartModal from "../CartModal"; // Добавить импорт
+import CartModal from "../CartModal";
 
 function ProductList() {
     const [products, setProducts] = useState([]);
@@ -16,7 +16,6 @@ function ProductList() {
             .then((data) => {
                 console.log("Товары получены:", data);
                 
-                // Проверяем и добавляем нужные поля если их нет
                 const formattedProducts = data.map((item, index) => ({
                     id: item.id || index,
                     image: item.image || "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=400&fit=crop",
@@ -169,7 +168,6 @@ function ProductList() {
     const isFilterActive = appliedMinPrice !== "" || appliedMaxPrice !== "";
     const isSortActive = sortType !== "default";
 
-    // Ошибка
     if (error) {
         return (
             <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
@@ -186,7 +184,6 @@ function ProductList() {
         );
     }
 
-    // Загрузка
     if (loading) {
         return (
             <div className="max-w-[1400px] mx-auto px-4 py-16 text-center">
@@ -350,7 +347,6 @@ function ProductList() {
                 )}
             </div>
             
-            {/* Модальное окно корзины */}
             <CartModal 
                 isOpen={isCartOpen}
                 onClose={() => setIsCartOpen(false)}
